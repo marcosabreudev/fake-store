@@ -1,0 +1,29 @@
+.item {
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background: white;
+    margin-bottom: 16px;
+
+    img {
+      max-width: 200px;
+      max-height: 200px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 0;
+    max-height: 48px;
+    overflow: hidden;
+  }
+
+  &__category {
+    color: #555;
+  }
+
+  &__price {
+    margin-top: 16px;
+  }
+}
