@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Items from 'components/SearchResult/Items';
+import Items from 'blocks/SearchResult/Items';
 import Filters from './Filters';
 
 export default function SearchResult() {

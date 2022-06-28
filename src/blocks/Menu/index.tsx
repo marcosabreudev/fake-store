@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Navigation() {
+export default function Menu() {
   return (
     <nav className='navbar fixed-top nav justify-content-center bg-light'>
       <Link to='/' className='nav-item nav-link'>Fake Store</Link>
