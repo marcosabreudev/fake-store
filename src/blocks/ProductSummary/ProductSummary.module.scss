@@ -1,0 +1,21 @@
+.product-summary {
+  margin-top: 100px;
+
+  &__image-container {
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+
+    img {
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+      padding: 10%;
+    }
+  }
+
+  &__details-container {
+    height: 500px;
+  }
+}
