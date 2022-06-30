@@ -1,28 +1,10 @@
 import classNames from 'classnames';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ItemProps } from 'types';
 
 import styles from './Item.module.scss';
 
-interface Props {
-  key: React.Key,
-  item: IItem
-}
-
-interface IItem {
-  id: number,
-  title: string,
-  price: number,
-  description: string,
-  category: string,
-  image: string,
-  rating: {
-    rate: number,
-    count: number
-  }
-}
-
-export default function Item(props: Props) {
+export default function Item(props: ItemProps) {
   const {title, image, price, category, id} = props.item;
   const navigate = useNavigate();
 

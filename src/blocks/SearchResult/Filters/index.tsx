@@ -1,18 +1,13 @@
 import classNames from 'classnames';
-import api from 'data/filters.json';
+
+import filters from 'data/filters.json';
 
 import { useState } from 'react';
+import { Category, FiltersProps } from 'types';
 import styles from './Filters.module.scss';
 
-type Category = typeof api[0];
-
-interface IProps {
-  filter: string | null,
-  setFilter: React.Dispatch<React.SetStateAction<string | null>>
-}
-
-export default function Filters(props: IProps) {
-  const [categories] = useState([...api]);
+export default function Filters(props: FiltersProps) {
+  const [categories] = useState([...filters]);
 
   function filterByCategory(category: Category) {
     if (category.name === props.filter) return props.setFilter(null);
