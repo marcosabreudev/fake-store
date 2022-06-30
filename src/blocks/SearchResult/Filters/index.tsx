@@ -21,9 +21,9 @@ export default function Filters(props: FiltersProps) {
       {categories.map(category => (
         <li key={category.id} className='nav-item'>
           <button className={classNames({
-            ['nav-link']: true,
+            'nav-link': true,
             [styles.filters__filter]: true,
-            ['active']: props.filter === category.name
+            'active': props.filter === category.name
           })}
             onClick={() => filterByCategory(category)}
           >
