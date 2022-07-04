@@ -13,9 +13,7 @@ export default function Produto() {
     const { id } = params;
   
     axios.get<IItem>(`https://fakestoreapi.com/products/${id}`)
-      .then(response => {
-        setItem(response.data);
-      });
+      .then(response => setItem(response.data));
   }, [params]);
 
   if (!item) return <NotFound />;

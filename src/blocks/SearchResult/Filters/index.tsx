@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import filters from 'data/filters.json';
 
 import { useState } from 'react';
-import { ICategory } from 'types';
+import { ICategory, IFilter } from 'types';
 import styles from './Filters.module.scss';
 
 export interface FiltersProps {
-  filter: string | null,
-  setFilter: React.Dispatch<React.SetStateAction<string | null>>
+  filter: IFilter,
+  setFilter: React.Dispatch<React.SetStateAction<IFilter>>
 }
 
 export default function Filters(props: FiltersProps) {

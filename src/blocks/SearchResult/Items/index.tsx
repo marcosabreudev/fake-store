@@ -1,13 +1,14 @@
 import api from 'data/products.json';
 
 import { useEffect, useState } from 'react';
+import { IFilter } from 'types';
 import Item from './Item';
 
-interface IProps {
-  filter: string | null
+interface ItemsProps {
+  filter: IFilter
 }
 
-export default function Items(props: IProps) {
+export default function Items(props: ItemsProps) {
   const [products, setProducts] = useState(api);
   const { filter } = props;
 
