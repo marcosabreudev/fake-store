@@ -10,14 +10,26 @@ export default function Produto() {
   const [item, setItem] = useState<IItem>();
 
   useEffect(() => {
-    const getItemData = () => axios.get<IItem>(`https://fakestoreapi.com/products/${params.id}`);
-    let isMounted = true;
+    const abortController = new AbortController();
+    const getItemData = () => { 
+      return axios.get<IItem>(`https://fakestoreapi.com/products/${params.id}`, {
+        signal: abortController.signal
+      })
+    }
 
-    getItemData().then(response => { 
-      if (isMounted) setItem(response.data) 
-    });
+    getItemData()
+      .then(response => { 
+        setItem(response.data) 
+      })
+      .catch(err => {
+        if (abortController.signal.aborted) {
+          console.log('request aborted', err);
+        } else {
+          //setItem(???)
+        }
+      });
 
-    return () => { isMounted = false };
+    return () => abortController.abort();
   }, [params]);
 
   if (!item) return <NotFound />;
