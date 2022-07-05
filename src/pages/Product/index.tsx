@@ -10,10 +10,14 @@ export default function Produto() {
   const [item, setItem] = useState<IItem>();
 
   useEffect(() => {
-    const { id } = params;
-  
-    axios.get<IItem>(`https://fakestoreapi.com/products/${id}`)
-      .then(response => setItem(response.data));
+    const getItemData = () => axios.get<IItem>(`https://fakestoreapi.com/products/${params.id}`);
+    let isMounted = true;
+
+    getItemData().then(response => { 
+      if (isMounted) setItem(response.data) 
+    });
+
+    return () => { isMounted = false };
   }, [params]);
 
   if (!item) return <NotFound />;
