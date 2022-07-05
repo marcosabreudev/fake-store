@@ -1,17 +1,9 @@
-import { useParams } from "react-router-dom";
-
 import styles from './ProductSummary.module.scss';
 
-import products from 'data/products.json';
-import NotFound from "blocks/NotFound";
 import classNames from "classnames";
+import { IItem } from "types";
 
-export default function ProductSummary() {
-  const params = useParams();
-  const { id } = params;
-  const item = products.find(item => item.id === Number(id));
-
-  if (!item) return <NotFound />
+export default function ProductSummary(item: IItem) {
 
   return (
     <div className={classNames({
@@ -23,19 +15,19 @@ export default function ProductSummary() {
           'col': true,
           [styles['product-summary__image-container']]: true
         })}>
-          <img src={item?.image} alt="Product image" />
+          <img src={item?.image} alt="Product" />
         </div>
 
         <div className={classNames({
           'col': true,
-          [styles['product-summary__details-container']]: true
+          [styles['product-summar1y__details-container']]: true
         })}>
-          <p>{item?.category}</p>
-          <h2>{item?.title}</h2>
-          <span>{item?.rating.rate}</span>
-          <p>R$ {item?.price}</p>
+          <p>{item.category}</p>
+          <h2>{item.title}</h2>
+          <span>{item.rating.rate}</span>
+          <p>R$ {item.price}</p>
           <button>Comprar</button>
-          <p>{item?.description}</p>
+          <p>{item.description}</p>
         </div>
       </div>
     </div>

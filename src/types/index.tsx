@@ -1,10 +1,3 @@
-import filters from 'data/filters.json';
-
-export interface ItemProps {
-  key: React.Key,
-  item: IItem
-}
-
 export interface IItem {
   id: number,
   title: string,
@@ -18,9 +11,9 @@ export interface IItem {
   }
 }
 
-export interface FiltersProps {
-  filter: string | null,
-  setFilter: React.Dispatch<React.SetStateAction<string | null>>
+export interface ICategory {
+  name: string,
+  id: number
 }
 
-export type Category = typeof filters[0];
+export type IFilter = string | null;

@@ -1,8 +1,13 @@
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
-import { ItemProps } from 'types';
+import { IItem } from 'types';
 
 import styles from './Item.module.scss';
+
+export interface ItemProps {
+  key: React.Key,
+  item: IItem
+}
 
 export default function Item(props: ItemProps) {
   const {title, image, price, category, id} = props.item;

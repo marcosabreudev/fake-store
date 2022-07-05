@@ -3,13 +3,18 @@ import classNames from 'classnames';
 import filters from 'data/filters.json';
 
 import { useState } from 'react';
-import { Category, FiltersProps } from 'types';
+import { ICategory, IFilter } from 'types';
 import styles from './Filters.module.scss';
+
+export interface FiltersProps {
+  filter: IFilter,
+  setFilter: React.Dispatch<React.SetStateAction<IFilter>>
+}
 
 export default function Filters(props: FiltersProps) {
   const [categories] = useState([...filters]);
 
-  function filterByCategory(category: Category) {
+  function filterByCategory(category: ICategory) {
     if (category.name === props.filter) return props.setFilter(null);
     props.setFilter(category.name);
   }

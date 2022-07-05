@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 import Items from 'blocks/SearchResult/Items';
 import Filters from './Filters';
+import { IFilter } from 'types';
 
 export default function SearchResult() {
-  const [filter, setFilter] = useState<string | null>(null);
+  const [filter, setFilter] = useState<IFilter>(null);
 
   return (
     <div className='container mt-5'>
