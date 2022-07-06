@@ -1,31 +1,43 @@
-import api from 'data/products.json';
-
+import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { IFilter } from 'types';
+import { IFilter, IItem } from 'types';
 import Item from './Item';
 
 interface ItemsProps {
   filter: IFilter
 }
 
-export default function Items(props: ItemsProps) {
-  const [products, setProducts] = useState(api);
-  const { filter } = props;
+export default function Items({ filter }: ItemsProps) {
+  const [products, setProducts] = useState<IItem[]>();
+  const [productsFiltered, setProductsFiltered] = useState<IItem[]>();
+
   const handleFilter = useCallback((category: string) => {
     if (filter !== null) return filter === category;
 
-    return api;
-  }, [filter]);
+    return products;
+  }, [filter, products]);
+
+  useEffect(() => {
+    axios.get<IItem[]>('https://fakestoreapi.com/products')
+      .then(response => { 
+        setProducts(response.data);
+        setProductsFiltered(response.data);
+      });
+  }, []);
   
   useEffect(() => {
-    const newProductList = api.filter((item) => handleFilter(item.category));
+    if (!products) return setProductsFiltered(products);
+
+    const filtered = products.filter((item) => handleFilter(item.category));
     
-    setProducts(newProductList);
-  }, [filter, handleFilter]);
+    setProductsFiltered(filtered);
+  }, [filter, handleFilter, products]);
+
+  if (!productsFiltered) return <h1>Loading...</h1>;
   
   return (
     <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
-      {products.map(item => <Item key={item.id} item={item} />)}
+      {productsFiltered.map(item => <Item key={item.id} item={item} />)}
     </div>
   )
 }
