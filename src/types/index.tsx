@@ -11,9 +11,4 @@ export interface IItem {
   }
 }
 
-export interface ICategory {
-  name: string,
-  id: number
-}
-
 export type IFilter = string | null;

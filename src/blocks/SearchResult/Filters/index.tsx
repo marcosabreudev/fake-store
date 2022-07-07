@@ -1,9 +1,8 @@
+import axios from 'axios';
 import classNames from 'classnames';
+import { useEffect, useState } from 'react';
+import { IFilter } from 'types';
 
-import filters from 'data/filters.json';
-
-import { useState } from 'react';
-import { ICategory, IFilter } from 'types';
 import styles from './Filters.module.scss';
 
 export interface FiltersProps {
@@ -11,28 +10,35 @@ export interface FiltersProps {
   setFilter: React.Dispatch<React.SetStateAction<IFilter>>
 }
 
-export default function Filters(props: FiltersProps) {
-  const [categories] = useState([...filters]);
+export default function Filters({ filter, setFilter }: FiltersProps) {
+  const [categories, setCategories] = useState<IFilter[]>();
 
-  function filterByCategory(category: ICategory) {
-    if (category.name === props.filter) return props.setFilter(null);
-    props.setFilter(category.name);
+  useEffect(() => {
+    axios.get<IFilter[]>('https://fakestoreapi.com/products/categories')
+    .then(response => setCategories(response.data));
+  }, []);
+
+  function filterByCategory(category: string | null) {
+    if (category === filter) return setFilter(null);
+    setFilter(category);
   }
+
+  if (!categories) return <h5>Loading filters....</h5>;
 
   return (
     <>
     <h5>Categorias</h5>
     <ul className='nav nav-pills flex-column'>
-      {categories.map(category => (
-        <li key={category.id} className='nav-item'>
+      {categories.map((category, index) => (
+        <li key={index} className='nav-item'>
           <button className={classNames({
             'nav-link': true,
             [styles.filters__filter]: true,
-            'active': props.filter === category.name
+            'active': filter === category
           })}
             onClick={() => filterByCategory(category)}
           >
-            {category.name}
+            {category}
           </button>
         </li>
       ))}
