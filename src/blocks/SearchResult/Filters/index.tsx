@@ -1,5 +1,5 @@
-import axios from 'axios';
 import classNames from 'classnames';
+import http from 'http/axios';
 import { useEffect, useState } from 'react';
 import { IFilter } from 'types';
 
@@ -14,7 +14,7 @@ export default function Filters({ filter, setFilter }: FiltersProps) {
   const [categories, setCategories] = useState<IFilter[]>();
 
   useEffect(() => {
-    axios.get<IFilter[]>('https://fakestoreapi.com/products/categories')
+    http.get<IFilter[]>('products/categories')
     .then(response => setCategories(response.data));
   }, []);
 

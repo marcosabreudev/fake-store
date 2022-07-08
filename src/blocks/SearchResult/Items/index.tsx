@@ -1,4 +1,4 @@
-import axios from 'axios';
+import http from 'http/axios';
 import { useCallback, useEffect, useState } from 'react';
 import { IFilter, IItem } from 'types';
 import Item from './Item';
@@ -18,7 +18,7 @@ export default function Items({ filter }: ItemsProps) {
   }, [filter, products]);
 
   useEffect(() => {
-    axios.get<IItem[]>('https://fakestoreapi.com/products')
+    http.get<IItem[]>('products')
       .then(response => { 
         setProducts(response.data);
         setProductsFiltered(response.data);
