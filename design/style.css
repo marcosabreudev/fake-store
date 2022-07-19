@@ -42,12 +42,20 @@ table {
 	border-spacing: 0;
 }
 
+::placeholder {
+  color: #C5C7CA;
+}
+
 body {
   font-size: 14px;
+  background-color: #E2E1E4;
 }
 
 main {
-  margin: 100px;
+  background: white;
+  width: 1036px;
+  padding: 66px;
+  margin: 0 auto;
 }
 
 button {
@@ -68,23 +76,23 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
-  position: relative;
+  width: 100%;
 }
 
 .search-input {
   width: 340px;
   border-radius: 10px;
   background-color: #FAFAFA;
+  position: relative;
 }
 
 .search-input input,
 .search-input input:focus {
-  padding: 20px 40px;
+  padding: 18px 40px;
   width: 100%;
   border: none;
   background: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   outline: none;
   border: 3px solid transparent;
@@ -97,7 +105,7 @@ p {
 
 .search button {
   position: absolute;
-  right: -121px;
+  left: 62%;
   background-color: black;
   color: #EFEFEF;
   font-weight: bold;
